@@ -1,20 +1,14 @@
-"""
-docstring
-"""
-
-from flask import Flask
-
+from flask import Flask, render_template
+from markupsafe import escape
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    """
-    docstring
-    """
-
-    return '<h1>Hello WSB! Greetings from Flask!</h1>'
+    return render_template('index.html')
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route('/hello/')
+@app.route('/hello/Adam')
+def hello(name="Adam"):
+    return render_template('hello.html', name=name)
